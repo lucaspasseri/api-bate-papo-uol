@@ -11,28 +11,27 @@ const participants = [];
 const messages = [];
 
 function toUpdateParticipants(){
-    if(participants.length>0){
-        participants.forEach((participant, index) => {
-            console.log(Date.now() - Date(participant.lastStatus));
-            if(Date.now() - participant.lastStatus > 10000) {
-                //participants.splice(index, 1);
+    if(participants.length > 0){
+
+        participants.forEach((participant, index, participants) => {
+
+            if(Date.now() - participant.timestamp > 10000) {
+                participants.splice(index, 1);
                 messages.push({
                     from: participant.name,
                     to: 'Todos',
                     text: 'sai da sala...',
                     type: 'status',
-                    time: dayjs(Date.now()).format("HH:mm:ss")
+                    time: dayjs(Date.now()).format("HH:mm:ss"),
+                    timestamp: Date.now()
                 });
-                console.log(participant.name);
             }   
         });
         return;
     }
-
-    console.log("testa bobo");
 }
 
-const updateInterval = setInterval(()=> toUpdateParticipants(), 1500);
+const updateInterval = setInterval(()=> toUpdateParticipants(), 15000);
 //clearInterval(updateInterval);
 
 app.post("/status", (req, res) => {
@@ -86,6 +85,7 @@ app.post("/participants", (req, res) => {
     if(req.body.name.trim().length > 0 && !participants.find(item=> item.name===req.body.name)){
 
         req.body.lastStatus = dayjs(Date.now()).format("HH:mm:ss");
+        req.body.timestamp = Date.now();
 
         participants.push(req.body)
 
