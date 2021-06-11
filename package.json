@@ -1,0 +1,27 @@
+{
+  "name": "api-bate-papo-uol",
+  "type": "module",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dayjs": "^1.10.5",
+    "express": "^4.17.1",
+    "nodemon": "^2.0.7"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lucaspasseri/api-bate-papo-uol.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lucaspasseri/api-bate-papo-uol/issues"
+  },
+  "homepage": "https://github.com/lucaspasseri/api-bate-papo-uol#readme"
+}
