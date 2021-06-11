@@ -2,6 +2,7 @@ import express from 'express';
 import cors from 'cors';
 import dayjs from 'dayjs';
 import { stripHtml } from 'string-strip-html';
+
 const app = express();
 
 app.use(express.json());
@@ -9,7 +10,7 @@ app.use(cors());
 
 const participants = [];
 
-const messages = [];
+const messages = [];   
 
 function toUpdateParticipants(){
     if(participants.length > 0){
