@@ -1,6 +1,7 @@
 import express from 'express';
 import cors from 'cors';
 import dayjs from 'dayjs';
+import { stripHtml } from 'string-strip-html';
 const app = express();
 
 app.use(express.json());
@@ -32,7 +33,6 @@ function toUpdateParticipants(){
 }
 
 const updateInterval = setInterval(()=> toUpdateParticipants(), 15000);
-//clearInterval(updateInterval);
 
 app.post("/status", (req, res) => {
     const user = req.headers.user;
@@ -89,8 +89,11 @@ app.post("/participants", (req, res) => {
 
         participants.push(req.body)
 
+        const formattedName = stripHtml(`${req.body.name}`);
+        const result = formattedName.result;
+
         messages.push({
-            from: req.body.name,
+            from: result,
             to: "Todos",
             text: "entra na sala...",
             type: "status",
