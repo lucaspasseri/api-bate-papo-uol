@@ -108,6 +108,4 @@ app.post("/participants", (req, res) => {
     res.sendStatus(400);
 });
 
-app.listen(4000, ()=>{
-    console.log("Running on port 4000...")
-});
+app.listen(4000);
